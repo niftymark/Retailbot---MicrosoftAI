@@ -1,0 +1,245 @@
+:root {
+  font-size: 100%;
+  font-family: SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+button {
+  border: 0 none;
+  padding: 0;
+  background-color: transparent;
+}
+button:focus {
+  outline: 0 none;
+}
+button:hover {
+  cursor: pointer;
+}
+
+.action {
+  position: relative;
+}
+
+.action > .spinner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+
+/* ---- GRID ---- */
+.grid {
+  display: grid;
+  grid-gap: 0;
+  grid-template-columns: 400px 1fr;
+  height: 100vh;
+}
+
+.grid aside {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.grid aside .top {
+  display: flex;
+  grid-row: 1 / 3;
+}
+
+.grid main .list-view {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  height: 100%;
+}
+
+.grid main .list-view .top {
+  grid-row: 1;
+  background-color: #f5f5f5;
+}
+
+.grid main .list-view .bottom {
+  grid-row: 2;
+  background-color: #edecec;
+}
+
+/* ---- CONTENT ---- */
+aside .top .content {
+  flex: 1;
+  margin: 0 2rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #ff6a51;
+}
+
+aside .top .content .greeting {
+  font-family: SegoeUILight, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 3rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+aside .top .recognized .greeting {
+  text-transform: capitalize;
+}
+
+aside .top .recognized .hint {
+  font-size: 1.6rem;
+  margin-bottom: 5rem;
+  text-align: center;
+  line-height: 1.3;
+}
+
+aside .top .recognized .mic-icon {
+  width: 6.1rem;
+  height: 6.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 12px solid #f5d9d0;
+  border-radius: 6.1rem;
+  transition: transform 0.5s;
+  transform: scale(1);
+}
+aside .top .recognized .mic-icon:hover {
+  transform: scale(1.1);
+}
+
+aside .top .recognized .mic-icon .border {
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid #e38e74;
+  border-radius: 4rem;
+}
+
+aside .top .recognized .mic-icon img {
+  width: 1.4rem;
+  margin: 0 auto;
+}
+
+aside .top .unrecognized .greeting {
+  font-size: 2rem;
+  margin: 1.5rem 0;
+  line-height: 1.4;
+}
+
+
+aside .bottom {
+  grid-row: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+aside .bottom .image-upload label {
+  width: 100%;
+}
+aside .bottom .image-upload label:hover {
+  cursor: pointer;
+}
+
+aside .bottom .image-upload label input {
+  display: none;
+}
+
+main .ad-view {
+  width: 100%;
+  height: 100%;
+  background: url('../images/generic-ad.png') no-repeat left center;
+  background-size: 100% 100%;
+}
+
+main .content {
+  padding: 1.2rem 3.5rem;
+}
+
+main .content h3 {
+  font-weight: normal;
+  font-size: 1.5rem;
+  margin: 0.6rem 0 1.2rem;
+}
+
+main .list {
+  display: flex;
+  justify-content: space-between;
+}
+
+main .list .item {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 12vw;
+  padding: 15px 20px 25px;
+}
+
+main .list .item img {
+  max-width: 175px;
+  max-height: 200px;
+  width: 8vw;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  padding-bottom: 1rem;
+}
+
+main .list .item b {
+  font-family: SegoeUISemibold, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.2rem;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  font-weight: normal;
+  margin-top: 1rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+main .list .item em {
+  font-style: normal;
+  margin-top: 2px;
+  font-size: 1.1rem;
+}
+
+/* ---- FLOW CONTROL ---- */
+[data-user-state="unrecognized"] aside .content.unrecognized {
+  display: flex;
+}
+[data-user-state="unrecognized"] aside .content.recognized,
+[data-user-state="unrecognized"] aside .action.recognized {
+  display: none;
+}
+
+[data-user-state="recognized"] aside .content.recognized {
+  display: flex;
+}
+[data-user-state="recognized"] aside .content.unrecognized,
+[data-user-state="recognized"] aside .action.unrecognized {
+  display: none;
+}
+
+[data-products-view="ad"] .list-view,
+[data-products-view="list"] .ad-view {
+  display: none !important;
+}
